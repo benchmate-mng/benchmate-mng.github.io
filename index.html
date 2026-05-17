@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Benchmate - College Searching App</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #4f46e5;
+        --secondary: #7c3aed;
+        --dark: #0f172a;
+        --text: #334155;
+        --muted: #64748b;
+        --light: #f8fafc;
+        --white: #ffffff;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(180deg, #eef2ff 0%, #ffffff 100%);
+        color: var(--dark);
+        overflow-x: hidden;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      /* NAVBAR */
+
+      nav {
+        padding: 24px 0;
+        position: relative;
+        z-index: 20;
+      }
+
+      .nav-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--primary);
+        letter-spacing: -1px;
+      }
+
+      .nav-btn {
+        background: var(--primary);
+        color: white;
+        padding: 12px 22px;
+        border-radius: 14px;
+        font-weight: 600;
+        transition: 0.3s ease;
+      }
+
+      .nav-btn:hover {
+        transform: translateY(-2px);
+        background: var(--secondary);
+      }
+
+      /* HERO */
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 40px 0 80px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 70px;
+        align-items: center;
+      }
+
+      .hero-text h1 {
+        font-size: 68px;
+        line-height: 1.05;
+        margin-bottom: 24px;
+        font-weight: 800;
+        letter-spacing: -3px;
+      }
+
+      .hero-text h1 span {
+        color: var(--primary);
+      }
+
+      .hero-text p {
+        font-size: 18px;
+        line-height: 1.8;
+        color: var(--muted);
+        margin-bottom: 36px;
+        max-width: 580px;
+      }
+
+      .download-buttons {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+      }
+
+      .store-btn {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: white;
+        padding: 16px 24px;
+        border-radius: 20px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 15px 35px rgba(15, 23, 42, 0.06);
+        transition: 0.3s ease;
+        min-width: 220px;
+      }
+
+      .store-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 45px rgba(15, 23, 42, 0.12);
+      }
+
+      .store-icon {
+        font-size: 34px;
+      }
+
+      .store-text small {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 3px;
+      }
+
+      .store-text strong {
+        font-size: 18px;
+        color: var(--dark);
+      }
+
+      .badges {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .badge {
+        padding: 10px 18px;
+        background: rgba(79, 70, 229, 0.1);
+        color: var(--primary);
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      /* PHONE */
+
+      .phone-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+      }
+
+      .blur-circle {
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(79, 70, 229, 0.25) 0%,
+          rgba(79, 70, 229, 0) 70%
+        );
+        filter: blur(12px);
+        z-index: 0;
+      }
+
+      .phone {
+        width: 330px;
+        height: 680px;
+        background: #0f172a;
+        border-radius: 42px;
+        padding: 14px;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 40px 80px rgba(15, 23, 42, 0.25);
+      }
+
+      .phone-screen {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%);
+        border-radius: 30px;
+        overflow: hidden;
+        padding: 24px 20px;
+        position: relative;
+      }
+
+      .notch {
+        width: 130px;
+        height: 28px;
+        background: #0f172a;
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 999px;
+        z-index: 5;
+      }
+
+      .app-top {
+        margin-top: 32px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .app-top h3 {
+        font-size: 24px;
+      }
+
+      .search-box {
+        margin-top: 24px;
+        background: white;
+        border-radius: 16px;
+        padding: 15px 18px;
+        color: #94a3b8;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      }
+
+      .college-card {
+        margin-top: 18px;
+        background: white;
+        border-radius: 24px;
+        padding: 20px;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      }
+
+      .card-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+
+      .tag {
+        background: rgba(79, 70, 229, 0.1);
+        color: var(--primary);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .college-card h4 {
+        font-size: 19px;
+        margin-bottom: 10px;
+      }
+
+      .college-card p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .stats {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .stat {
+        flex: 1;
+        background: #f8fafc;
+        border-radius: 16px;
+        padding: 12px;
+        text-align: center;
+      }
+
+      .stat strong {
+        display: block;
+        color: var(--primary);
+        font-size: 18px;
+        margin-bottom: 4px;
+      }
+
+      .stat span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      /* FEATURES */
+
+      .features {
+        padding: 100px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title h2 {
+        font-size: 48px;
+        margin-bottom: 16px;
+      }
+
+      .section-title p {
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+      }
+
+      .feature-card {
+        background: white;
+        padding: 34px;
+        border-radius: 28px;
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.06);
+        transition: 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-6px);
+      }
+
+      .feature-icon {
+        font-size: 40px;
+        margin-bottom: 18px;
+      }
+
+      .feature-card h3 {
+        font-size: 24px;
+        margin-bottom: 12px;
+      }
+
+      .feature-card p {
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      /* CTA */
+
+      .cta {
+        padding: 0 0 100px;
+      }
+
+      .cta-box {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 40px;
+        padding: 70px 40px;
+        text-align: center;
+        color: white;
+      }
+
+      .cta-box h2 {
+        font-size: 50px;
+        margin-bottom: 18px;
+      }
+
+      .cta-box p {
+        font-size: 18px;
+        opacity: 0.9;
+        margin-bottom: 34px;
+      }
+
+      .cta-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .cta-btn {
+        background: white;
+        color: var(--primary);
+        padding: 16px 24px;
+        border-radius: 16px;
+        font-weight: 700;
+        transition: 0.3s ease;
+      }
+
+      .cta-btn:hover {
+        transform: translateY(-4px);
+      }
+
+      footer {
+        padding: 40px 0;
+        text-align: center;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      /* RESPONSIVE */
+
+      @media (max-width: 980px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .hero-text p {
+          margin: auto auto 36px;
+        }
+
+        .download-buttons,
+        .badges {
+          justify-content: center;
+        }
+
+        .hero-text h1 {
+          font-size: 52px;
+        }
+
+        .section-title h2,
+        .cta-box h2 {
+          font-size: 38px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .hero-text h1 {
+          font-size: 42px;
+        }
+
+        .phone {
+          width: 290px;
+          height: 600px;
+        }
+
+        .store-btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .section-title h2,
+        .cta-box h2 {
+          font-size: 32px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+
+    <nav>
+      <div class="container nav-wrapper">
+        <div class="logo">Benchmate</div>
+
+        <a
+          href="https://play.google.com/store/apps/details?id=com.studentscafe.benchmate"
+          target="_blank"
+          class="nav-btn"
+        >
+          Download App
+        </a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <!-- LEFT -->
+
+        <div class="hero-text">
+          <h1>Find The Right <span>College</span> For Your Future</h1>
+
+          <p>
+            Benchmate helps students discover colleges, compare courses, explore
+            campuses, and make smarter academic decisions — all from one app.
+          </p>
+
+          <div class="download-buttons">
+            <!-- PLAY STORE -->
+
+            <a
+              href="https://play.google.com/store/apps/details?id=com.studentscafe.benchmate"
+              target="_blank"
+              class="store-btn"
+            >
+              <div class="store-icon">▶</div>
+
+              <div class="store-text">
+                <small>GET IT ON</small>
+                <strong>Google Play</strong>
+              </div>
+            </a>
+
+            <!-- APP STORE -->
+
+            <a
+              href="https://apps.apple.com/in/app/benchmate/id6447514602"
+              target="_blank"
+              class="store-btn"
+            >
+              <div class="store-icon"></div>
+
+              <div class="store-text">
+                <small>DOWNLOAD ON THE</small>
+                <strong>App Store</strong>
+              </div>
+            </a>
+          </div>
+
+          <div class="badges">
+            <div class="badge">College Search</div>
+            <div class="badge">Compare Colleges</div>
+            <div class="badge">Student Friendly</div>
+            <div class="badge">Easy To Use</div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="phone-wrapper">
+          <div class="blur-circle"></div>
+
+          <div class="phone">
+            <div class="notch"></div>
+
+            <div class="phone-screen">
+              <div class="app-top">
+                <h3>Benchmate</h3>
+                <span>🔔</span>
+              </div>
+
+              <div class="search-box">🔍 Search colleges, courses...</div>
+
+              <div class="college-card">
+                <div class="card-head">
+                  <div class="tag">Top Rated</div>
+                  <div>⭐ 4.8</div>
+                </div>
+
+                <h4>National Institute of Technology</h4>
+
+                <p>
+                  Explore placements, campus facilities, courses, fees, and
+                  student reviews in one place.
+                </p>
+
+                <div class="stats">
+                  <div class="stat">
+                    <strong>95%</strong>
+                    <span>Placement</span>
+                  </div>
+
+                  <div class="stat">
+                    <strong>120+</strong>
+                    <span>Courses</span>
+                  </div>
+
+                  <div class="stat">
+                    <strong>₹4L</strong>
+                    <span>Avg Fees</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="college-card">
+                <div class="card-head">
+                  <div class="tag">Trending</div>
+                  <div>⭐ 4.7</div>
+                </div>
+
+                <h4>Engineering & Medical Colleges</h4>
+
+                <p>
+                  Discover colleges that match your goals and career interests.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+
+    <section class="features">
+      <div class="container">
+        <div class="section-title">
+          <h2>Everything Students Need</h2>
+
+          <p>Designed to simplify your college search experience.</p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎓</div>
+
+            <h3>Smart Search</h3>
+
+            <p>
+              Find colleges by course, stream, city, rankings, and other
+              important filters.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+
+            <h3>Compare Colleges</h3>
+
+            <p>
+              Compare placements, fees, campus life, facilities, and more in one
+              place.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+
+            <h3>Fast & Clean</h3>
+
+            <p>
+              Smooth experience with a simple interface built specifically for
+              students.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Start Exploring Colleges Today</h2>
+
+          <p>
+            Download Benchmate and discover the best colleges for your future.
+          </p>
+
+          <div class="cta-buttons">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.studentscafe.benchmate"
+              target="_blank"
+              class="cta-btn"
+            >
+              Android App
+            </a>
+
+            <a
+              href="https://apps.apple.com/in/app/benchmate/id6447514602"
+              target="_blank"
+              class="cta-btn"
+            >
+              iPhone App
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+      <div class="container">
+        © 2026 Benchmate - College Searching App. All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      // Scroll animation
+
+      const cards = document.querySelectorAll(".feature-card");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0px)";
+            }
+          });
+        },
+        {
+          threshold: 0.2,
+        }
+      );
+
+      cards.forEach((card) => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(40px)";
+        card.style.transition = "all 0.6s ease";
+
+        observer.observe(card);
+      });
+    </script>
+  </body>
+</html>
